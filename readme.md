@@ -14,7 +14,7 @@ It uses the **TextBlob** library for sentiment analysis and stores results in a 
 ## Getting Started
 
 1. **Clone the repository**  
-   `git clone <your-repo-url>`
+   `git clone https://github.com/m1amineratit/Sentiment-Analysis-For-Comments.git`
 
 2. **Install dependencies**  
    ```
