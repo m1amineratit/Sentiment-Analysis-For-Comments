@@ -17,6 +17,11 @@
     {% if result %}
     <div class="alert alert-info text-center fs-5">
         Result: <strong>{{ result }}</strong>
+        {% if summary %}
+        <div class="mt-2">
+            <strong>Summary:</strong> {{ summary }}
+        </div>
+        {% endif %}
     </div>
     {% endif %}
 
@@ -24,7 +29,17 @@
     <ul class="list-group">
         {% for c in comments %}
         <li class="list-group-item bg-secondary text-light">
-            {{ c.text }} — <em>{{ c.sentiment }}</em>
+            <div>
+                <strong>Comment:</strong> {{ c.text }}
+            </div>
+            <div>
+                <strong>Sentiment:</strong> <em>{{ c.sentiment }}</em>
+            </div>
+            {% if c.summary %}
+            <div>
+                <strong>Summary:</strong> {{ c.summary }}
+            </div>
+            {% endif %}
         </li>
         {% empty %}
         <li class="list-group-item">No comments analyzed yet.</li>
