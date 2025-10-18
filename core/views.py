@@ -3,12 +3,17 @@ from textblob import TextBlob
 from .forms import CommentForm
 from .models import Comment
 import requests
+from django.contrib.auth.decorators import login_required
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
+AI_KEY = os.getenv("AI_KEY")
 # Helper function to summarize text using OpenRouter
 def get_ai_summary(text):
     url = "https://openrouter.ai/api/v1/chat/completions"
     headers = {
-        "Authorization": "Bearer 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",
+        "Authorization": f"Bearer {AI_KEY}",
         "Content-Type": "application/json"
     }
     payload = {
@@ -29,6 +34,7 @@ def get_ai_summary(text):
         print(f"Error contacting OpenRouter: {e}")
         return "Summary not available"
 
+@login_required
 def analyze_view(request):
     result = None
     summary = None
